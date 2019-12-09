@@ -1,0 +1,46 @@
+.top{
+	height:40px;
+	width: 1230px;
+	margin: 0 auto;
+	background-image:url(../img/goods_img/Tlogo.png);
+	background-position: left center;
+	 background-repeat: no-repeat;
+}
+.reg{
+	width: 100%;
+	height: 500px;
+	background-color: #18002f;
+}
+
+.content{
+	width: 1230px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top:10px;
+	background-image:url(../img/login_img/bag.jpg);
+}
+.content table{
+	width: 400px;
+	height: 300px;
+	text-align: center;
+	position: absolute;
+	right: 100px;
+	top: 160px;
+	background:#18002f;
+	color: white;
+}
+.content table th{
+	height: 40px;
+}
+.content table td{
+	height: 40px;
+}
+.btn button{
+	border: none;
+	width: 80px;
+	height: 20px;
+/* 	color: white;
+	background: #FF0C40; */
+	outline: none;
+	
+}

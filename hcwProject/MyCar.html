@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>天猫购物车</title>
+		<link rel="stylesheet" type="text/css" href="css/MyCar.css" />
+	</head>
+	<body>
+		<div class="header">
+
+		</div>
+		<div id="MyCar_top">
+			<div class="MyCar_top_Left">
+			</div>
+			<div class="MyCar_top_Right">
+				<div class="MyCar_top_Right_center">
+					<input type="text" name="" id="" value="" placeholder="搜索宝贝" />
+					<input type="button" value="搜索" id="button">
+				</div>
+			</div>
+		</div>
+		<!-- 购物车中间展示部分 -->
+		<div class="my_Car_Goods_List">
+			<ul class="my_Car_Goods_List_Ul">
+				<li>
+					全部商品
+					<span id="goods_Num">
+						1
+					</span>
+				</li>
+				<li>
+					降价商品
+					<span id="goods_Num">
+						0
+					</span>
+				</li>
+				<li>
+					库存紧张
+					<span id="goods_Num">
+						0
+					</span>
+				</li>
+			</ul>
+
+			<!-- 信息展示 -->
+			<div class="message">
+				<!-- <input type="checkbox" name="" id="" value="" id="All_Select" />全选 -->
+				<span class="message_Item">商品信息</span>
+				<span class="message_Item">单价</span>
+				<span class="message_Item">数量</span>
+				<span class="message_Item">金额</span>
+				<span class="message_Item">操作</span>
+			</div>
+			<!-- 商品的信息展示 -->
+			<ul class="my_Car_Goods_List_Ul_Cont" id="CarList">
+
+			</ul>
+		</div>
+		<!-- 结算部分 -->
+		<div class="my_Car_Goods_All">
+		<!-- 	<input type="checkbox" name="" id="" value="" class="All_Select" />全选 -->
+			<div class="Money">
+				<h5 id="one">已选商品:<p class="Goods_Js">0</p>件</h5>
+				<h5 id="two">合计(不含运费):<p class="Goods_Zj">0</p>
+				</h5>
+			</div>
+			<div class="js">
+				去结算
+			</div>
+		</div>
+		<div id="WX_MyCar_pop">
+			<button id="btn" type="button" style="background: royalblue; color: white;border: none;width: 20px; height: 20px;">X</button>
+			推荐使用支付宝支付
+			<img src="img/index_img/ewm.png"width="300" height="300" >
+		</div>
+		<!-- 底部footer -->
+		<div class="footer">
+
+		</div>
+	</body>
+</html>
+<script src="js/jQuery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".header").load("Goods_header.html", function() {});
+		$(".footer").load("footer.html", function() {});
+	})
+	// 获取localstorage中的内容
+	let oCarList = document.getElementById("CarList")
+	let Carls = localStorage;
+	let obj = JSON.parse(Carls.getItem("Car"))
+	for (let i = 0; i < obj.length; i++) {
+		oCarList.innerHTML +=
+			`
+				<li class="my_Car_Goods_List_Ul_Cont_Li">
+					<ul>
+						<li>
+							<input type="checkbox" name="" class="checked" value=""/>
+						</li>
+						<li>
+							<img src="${obj[i].img}" width="50px" height="50px">
+							<span id="title">
+								${obj[i].title}
+							</span>
+						</li>
+						<li class="dj">${obj[i].price}</li>
+						<li>
+							<button type="button" class="Addbtn">+</button>
+								<span class="myCar_count" id="myCar_count">${obj[i].GoodsNum}</span>
+							<button type="button" class="Minbtn">-</button>
+						</li>
+						<li class="All_Money">
+							${obj[i].AllPrice}
+						</li>
+						<li>
+							<a href="" style="color: #000000;" class="remove_Goods">移除商品</a>
+						</li>
+					</ul>
+				</li>`
+	}
+	// 数量发生变化以及,让总计发生改变;
+	$(function(){
+		// 点击加号
+		$(".Addbtn").click(function(){
+			let index=$(this).index(".Addbtn");
+			let num=$(".myCar_count").eq(index).html();
+			num++;
+			$(".myCar_count").eq(index).html(num);
+			let Allnum=$(".dj").eq(index).html();
+			let sl=Allnum.replace(Allnum.charAt(0),'');
+			$(".All_Money").eq(index).html(sl*$(".myCar_count").eq(index).html());
+			if($(".checked").eq(index).prop("checked")==true){
+				let Nums=$(".myCar_count").eq(index).html();
+				Goods_All_Nums=Number(Nums);
+				$(".Goods_Js").html(Goods_All_Nums);
+				let money=$(".All_Money").eq(index).html();
+				Sp_Money=Number(money);
+				$(".Goods_Zj").html(Sp_Money);
+			}
+		})
+		// 点击减号按钮时
+		$(".Minbtn").click(function(){
+			let index=$(this).index(".Minbtn");
+			let num=$(".myCar_count").eq(index).html();
+			if(num>1){
+				let num=$(".myCar_count").eq(index).html();
+				num--;
+				$(".myCar_count").eq(index).html(num);
+				let Allnum=$(".dj").eq(index).html();
+				let sl=Allnum.replace(Allnum.charAt(0),'');
+				$(".All_Money").eq(index).html(sl*$(".myCar_count").eq(index).html());
+				if($(".checked").eq(index).prop("checked")==true){
+					let Nums=$(".myCar_count").eq(index).html();
+					Goods_All_Nums=Number(Nums);
+					$(".Goods_Js").html(Goods_All_Nums);
+					let money=$(".All_Money").eq(index).html();
+					Sp_Money=Number(money);
+					$(".Goods_Zj").html(Sp_Money);
+				}
+			}else{
+				alert("不能再减了!!");
+			}
+		})
+		
+		// 计算小计
+		// 商品件数,
+
+		let Goods_All_Nums=0
+		$(function(){
+			$(".checked").click(function(){
+				let index=$(this).index(".checked");
+				if($(".checked").eq(index).prop("checked")==true){
+					let Nums=$(".myCar_count").eq(index).html();
+					Goods_All_Nums+=Number(Nums);
+					$(".Goods_Js").html(Goods_All_Nums);
+				}else if($(".checked").eq(index).prop("checked")==false){
+					let Nums=$(".myCar_count").eq(index).html();
+					if($(".Goods_Js").html()>0){
+						Goods_All_Nums-=Number(Nums);
+						$(".Goods_Js").html(Goods_All_Nums);
+					}
+				}
+			})
+		})
+		// 总价
+		let Sp_Money=0;
+		$(".checked").click(function(){
+			let index=$(this).index(".checked");
+			if($(".checked").eq(index).prop("checked")==true){
+				let money=$(".All_Money").eq(index).html();
+				Sp_Money+=Number(money);
+				$(".Goods_Zj").html(Sp_Money);
+			}else if($(".checked").eq(index).prop("checked")==false){
+				let money=$(".All_Money").eq(index).html();
+				if($(".Goods_Zj").html()>0){
+					Sp_Money-=Number(money);
+					$(".Goods_Zj").html(Sp_Money);
+				}
+			}
+		})
+		// 删除商品
+		$(".remove_Goods").click(function(){
+			let index=$(this).index(".remove_Goods");
+			alert(index);
+			let goods_obj = JSON.parse(Carls.getItem("Car"))
+			goods_obj.pop();
+			localStorage.setItem("Car",JSON.stringify(goods_obj));
+		})
+		
+		// 结算页面
+		$(".js").click(function(){
+			$("#WX_MyCar_pop").css({
+				display:"block"
+			})
+		})
+		$("#btn").click(function(){
+			$("#WX_MyCar_pop").css({
+				display:"none"
+			})
+		})
+	})
+</script>

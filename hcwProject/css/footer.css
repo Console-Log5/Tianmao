@@ -1,0 +1,141 @@
+/* 清除默认的边距 */
+body,
+p,
+ul,
+ol,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+td,
+input,
+textarea {
+	margin: 0;
+	padding: 0;
+	font: 12px/1.5 tahoma,arial,"\5b8b\4f53";
+}
+
+ul li {
+	list-style: none;
+}
+
+/* 底部 */
+.footer {
+	width: 100%;
+	height: 605px;
+	font-family: "Microsoft YaHei",tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+	/* background: red; */
+	margin-top: 30px;
+}
+
+
+/* 底部上半部分 */
+.footer_Top {
+	width: 1230px;
+	height: 366px;
+	background: #F5F5F5;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+
+.footer_Top_Item0 {
+	height: 152px;
+	background-color: #ffffff;
+	display: flex;
+	justify-content: space-between;
+}
+
+.item0 {
+	width: 246px;
+	height: 152px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer_Top_Item1 {
+	height: 214px;
+	background:#ffffff;
+}
+
+.footer_Top_Item1 dl{
+	float: left;
+	width: 186px;
+	padding-left: 52px;
+	
+}
+
+.footer_Top_Item1 dl dt{
+	color: #646464;
+	font-size: 16px;
+	font-weight: 700;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+}
+.footer_Top_Item1 dl dd a{
+	text-decoration: none;
+	width: 100px;
+	overflow: hidden;
+	text-align: left;
+	height: 20px;
+	line-height: 20px;
+	color: #8b8b8b;
+	display: block;
+}
+#moblie{
+	width: 105px;
+	height: 105px;
+}
+#moblie a{
+	width: 105px;
+	height: 105px;
+}
+#moblie img{
+	width: 105px;
+	height: 105px;
+]}
+/* 底部下半部分 */
+.footer_Bottom {
+	width: 1230px;
+	height: 239px;
+	background: #F5F5F5;
+	background-color: black;
+	border-top: 2px solid red;
+	margin: 0 auto;
+	text-align: left;
+}
+.footer_Bottom span{
+	color: white;
+}
+.footer_Bottom p{
+	padding: 5px 0;
+	text-align: left;	
+}
+.footer_Bottom a{
+	text-decoration:none;
+	color: white;
+}
+.footer-tmallinfo{
+	line-height: 25px;
+}
+.footer-tmallinfo a{
+	margin-right: 3px;
+}
+.footer-copyright{
+	color: #a4a4a4;
+}
+.footer-copyright a{
+	margin-right: 65px;
+	font-size: 12px;
+	color: #a4a4a4;
+}
+.footer-copyright p{
+	color: #A4A4A4;
+	display: inline-block;
+}
